@@ -10,7 +10,7 @@ If you are looking for a guide on how to use it check out the blog article: [Flu
 
 | Material (Android)        | iOS (Cupertino)           | Windows (FluentUI)  |
 | :------------: |:-------------:| :-----:|
-|<img src="assets/gif/android_search_demo.gif" alt="drawing" style="width:250px;height:400px;"/>| <img src="assets/gif/iOS_search_demo.gif" alt="drawing" style="width:250px;height:400px;"/> |<img src="assets/gif/windows_search_demo.gif" alt="drawing" style="width:250px;height:400px;"/> |
+|<img src="assets/images/material_search.png" alt="drawing" style="width:250px;height:400px;"/>| <img src="assets/images/cupertino_search.png" alt="drawing" style="width:250px;height:400px;"/> |<img src="assets/images/fluent-ui_search.png" alt="drawing" style="width:250px;height:400px;"/> |
 
 ## 👤 Author 
 
