@@ -43,6 +43,10 @@ class WindowsSearchDelegate extends AbstractPlatformSearchDelegate {
 
   @override
   Widget buildScaffold(Widget? body, BuildContext context) {
+    const BorderSide _kDefaultRoundedBorderSide = BorderSide(
+      style: BorderStyle.solid,
+      width: 0.8,
+    );
     return fluent.Scaffold(
       left: NavigationPanel(
         currentIndex: 2,
@@ -53,65 +57,62 @@ class WindowsSearchDelegate extends AbstractPlatformSearchDelegate {
           ),
         ),
         items: [
-          NavigationPanelItem(
-            header: true,
-            label: fluent.Container(
-              color: Colors.white,
-              child: fluent.AutoSuggestBox<PlatformItem>(
-                controller: queryTextController,
-                items: search(query),
-                onSelected: (text) {
-                  print(text);
-                },
-                noResultsFound: (context) => ListTile(
-                  title: DefaultTextStyle(
-                    style: TextStyle(
-                        fontWeight: FontWeight.normal, color: Colors.black),
-                    child: Text('No results found'),
-                  ),
-                ),
-                itemBuilder: (context, item) {
-                  return PlatformItemWidget(
-                    item,
-                    small: true,
-                  );
-                },
-                textBoxBuilder: (context, controller, fN, key) {
-                  const BorderSide _kDefaultRoundedBorderSide = BorderSide(
-                    style: BorderStyle.solid,
-                    width: 0.8,
-                  );
-
-                  return TextBox(
-                    key: key,
-                    controller: controller,
-                    focusNode: fN,
-                    suffixMode: OverlayVisibilityMode.editing,
-                    suffix: IconButton(
-                      icon: fluent.Icon(Icons.close),
-                      onPressed: () {
-                        controller.clear();
-                        fN.unfocus();
-                      },
-                    ),
-                    placeholder: 'Type in a platform',
-                    decoration: BoxDecoration(
-                      border: Border(
-                        top: _kDefaultRoundedBorderSide,
-                        bottom: _kDefaultRoundedBorderSide,
-                        left: _kDefaultRoundedBorderSide,
-                        right: _kDefaultRoundedBorderSide,
-                      ),
-                      borderRadius: fN.hasFocus
-                          ? BorderRadius.vertical(top: Radius.circular(3.0))
-                          : BorderRadius.all(Radius.circular(3.0)),
-                    ),
-                  );
-                },
+          NavigationPanelSectionHeader(
+              header: fluent.AutoSuggestBox<PlatformItem>(
+            onSelected: (PlatformItem item) => print(item.name),
+            controller: queryTextController,
+            sorter: (String text, List items) => search.call(text),
+            items: platforms,
+            noResultsFound: (context) => ListTile(
+              title: DefaultTextStyle(
+                style: TextStyle(
+                    fontWeight: FontWeight.normal, color: Colors.black),
+                child: Text('No results found'),
               ),
             ),
-          ),
-          NavigationPanelSectionHeader(header: Text('')),
+            itemBuilder: (context, item) {
+              return PlatformItemWidget(
+                item,
+                small: true,
+              );
+            },
+            textBoxBuilder: (context, controller, fn, key) => TextBox(
+              key: key,
+              controller: controller,
+              focusNode: fn,
+              suffixMode: OverlayVisibilityMode.always,
+              suffix: fluent.Row(
+                children: [
+                  controller.text.isNotEmpty
+                      ? IconButton(
+                          icon: fluent.Icon(Icons.close),
+                          onPressed: () {
+                            controller.clear();
+                            fn.unfocus();
+                          },
+                        )
+                      : fluent.SizedBox.shrink(),
+                  IconButton(
+                    icon: fluent.Icon(Icons.search),
+                    onPressed: () {},
+                  ),
+                ],
+              ),
+              placeholder: searchFieldLabel,
+              decoration: BoxDecoration(
+                color: Colors.white,
+                border: Border(
+                  top: _kDefaultRoundedBorderSide,
+                  bottom: _kDefaultRoundedBorderSide,
+                  left: _kDefaultRoundedBorderSide,
+                  right: _kDefaultRoundedBorderSide,
+                ),
+                borderRadius: fn.hasFocus
+                    ? BorderRadius.vertical(top: Radius.circular(3.0))
+                    : BorderRadius.all(Radius.circular(3.0)),
+              ),
+            ),
+          )),
           NavigationPanelItem(
             icon: fluent.Icon(Icons.input),
             label: Text('Page 1'),
