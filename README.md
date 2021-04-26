@@ -1,4 +1,4 @@
-# Flutter platform search
+# Flutter Platform Search
 
 Flutter platform search is an abstract implementation of the Flutter search delegate. It is a time saving way to implement a platform adaptive search. 
 The example includes reference implementations for Android(Material), iOS(Cupertino) and Windows(FluentUI).
