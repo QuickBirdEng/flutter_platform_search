@@ -18,4 +18,4 @@ This example app and the blog article were created with 💙 by [QuickBird Studi
 
 ## 📃 License
 
-The Recipes App is released under the MIT license. See [LICENSE](LICENSE) for more information.
+The Example app is released under the MIT license. See [LICENSE](LICENSE) for more information.
