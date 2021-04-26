@@ -113,23 +113,6 @@ class WindowsSearchDelegate extends AbstractPlatformSearchDelegate {
               ),
             ),
           )),
-          NavigationPanelItem(
-            icon: fluent.Icon(Icons.input),
-            label: Text('Page 1'),
-            onTapped: () {},
-          ),
-          NavigationPanelTileSeparator(),
-          NavigationPanelItem(
-            icon: fluent.Icon(Icons.format_align_center),
-            label: Text('Page 2'),
-            onTapped: () {},
-          ),
-          NavigationPanelTileSeparator(),
-          NavigationPanelItem(
-            icon: fluent.Icon(Icons.music_note),
-            label: Text('Page 3'),
-            onTapped: () {},
-          ),
         ],
       ),
       body: Container(),
