@@ -211,6 +211,7 @@ class _CupertinoSearchState extends fluent.State<CupertinoSearch> {
         child: CustomScrollView(
           slivers: [
             CupertinoSliverNavigationBar(
+              border: Border.all(width: 0.0, color: Colors.transparent),
               largeTitle: Text('Search'),
               backgroundColor: Colors.white,
               transitionBetweenRoutes: true,
