@@ -22,7 +22,7 @@ environment:
   flutter: ">=2.8.0"
 
 dependencies:
-  fluent_ui: ^3.6.0
+  fluent_ui: ^3.7.0
   flutter:
     sdk: flutter
 

@@ -21,19 +21,24 @@ class WindowsSearchDelegate extends AbstractPlatformSearchDelegate {
   @override
   Widget buildScaffold(Widget? body, BuildContext context) {
     return fluent.ScaffoldPage(
-      content: Padding(
-        padding: EdgeInsets.symmetric(horizontal: 16, vertical: 32),
-        child: Column(
-          children: [
-            fluent.AutoSuggestBox<String>(
-              key: _autoSuggestBoxKey,
-              placeholder: 'Search',
-              onSelected: (item) => print(item),
-              controller: queryTextController,
-              items: _kPlatformNames,
-            ),
-            Spacer(),
-          ],
+      content: fluent.NavigationView(
+        appBar: fluent.NavigationAppBar(
+          title: Text("Search", style: TextStyle(fontSize: 22, fontWeight: fluent.FontWeight.bold)),
+        ),
+        pane: fluent.NavigationPane(
+          displayMode: fluent.PaneDisplayMode.compact,
+          header: SizedBox.expand(),
+          autoSuggestBoxReplacement: fluent.Icon(fluent.FluentIcons.search),
+          autoSuggestBox: fluent.AutoSuggestBox(
+            key: _autoSuggestBoxKey,
+            placeholder: 'Search',
+            onSelected: (item) => print(item),
+            controller: queryTextController,
+            items: _kPlatformNames,
+          ),
+        ),
+        content: Container(
+          color: fluent.Colors.white,
         ),
       ),
     );
